@@ -42,7 +42,7 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import MenuList from "../MenuList/MenuList";
 
-const menu1 = [
+const a = [
 	{
 		id: "1",
 		name: "Dashboard",
@@ -58,10 +58,10 @@ const menu1 = [
 		name: "Profiel",
 		icon: <FaceIcon />,
 	},
-	{ id: "4", name: "Verlof", icon: <HourglassEmptyIcon /> },
+	{ id: "4", name: "Verlof", icon: <hourglassEmptyIcon /> },
 ];
 
-const menu2 = [
+const b = [
 	{
 		id: "1",
 		name: "Dashboard",
@@ -77,7 +77,7 @@ const menu2 = [
 		name: "Profiel",
 		icon: <FaceIcon />,
 	},
-	{ id: "4", name: "Verlof", icon: <HourglassEmptyIcon /> },
+	{ id: "4", name: "Verlof", icon: <hourglassEmptyIcon /> },
 ];
 const DrawerLeft = (props) => {
 	const [open, setOpen] = React.useState(false);
@@ -135,8 +135,8 @@ const DrawerLeft = (props) => {
 					</ListItem>
 					<Divider />
 				</List>
-				<MenuList items={menu1} name="Jij" />
-				<MenuList items={menu2} name="Ik" />
+				<MenuList items={a} name="Jij" />
+				<MenuList items={b} name="Ik" />
 			</Drawer>
 		</div>
 	);
