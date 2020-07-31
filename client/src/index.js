@@ -3,12 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./Components/App/App";
 
-
 ReactDOM.render(
-	<React.StrictMode>
+  <React.Fragment>
     <App />
-	</React.StrictMode>,
-	document.getElementById("root")
+  </React.Fragment>,
+  document.getElementById("root")
 );
-
-
