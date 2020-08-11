@@ -12,12 +12,12 @@ const MenuListItems = ({ items }) => {
             key={item.id}
             id={item.id}
             icon={item.icon}
-            name={item.name}
+            name={item.text}
           />
         ) : (
           <ListItem button key={item.id}>
             <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.name} />
+            <ListItemText primary={item.text} />
           </ListItem>
         )
       )}
