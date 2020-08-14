@@ -1,12 +1,12 @@
 import React from "react";
-import Navigation from "../Navigation/Navigation";
+import Layout from "../Layout/Layout";
 
 function App() {
-	return (
-		<div className="App">
-			<Navigation />
-		</div>
-	);
+  return (
+    <>
+      <Layout />
+    </>
+  );
 }
 
 export default App;

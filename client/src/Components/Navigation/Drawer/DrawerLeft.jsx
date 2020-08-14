@@ -2,9 +2,26 @@ import Drawer from "@material-ui/core/Drawer";
 import React from "react";
 // Imports from Link and Breadcrumbs components from "@material-ui/"
 import MenuList from "./MenuList/MenuList";
-import MenuItems from "../../../static/json/menu.js";
+import MenuItems from "../../../static/menu/menu.js";
+import { makeStyles } from "@material-ui/core";
+
+const drawerWidth = 200;
+
+const useStyles = makeStyles({
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    background: "#F2F4F5",
+    border: "none",
+    width: drawerWidth,
+  },
+});
 
 const DrawerLeft = () => {
+  const classes = useStyles();
+
   const persoonlijkMenu = [...MenuItems]
     .filter(
       (menu) =>
@@ -19,17 +36,22 @@ const DrawerLeft = () => {
     .sort((a, b) => a.order - b.order);
 
   return (
-    <div>
-      <Drawer anchor="left" open variant="permanent">
-        {typeof persoonlijkMenu !== "undefined" || persoonlijkMenu !== null ? (
-          <MenuList name="Persoonlijk" items={persoonlijkMenu} />
-        ) : null}
+    <Drawer
+      className={classes.drawer}
+      open
+      variant="persistent"
+      classes={{
+        paperAnchorLeft: classes.drawerPaper,
+      }}
+    >
+      {typeof persoonlijkMenu !== "undefined" || persoonlijkMenu !== null ? (
+        <MenuList name="Persoonlijk" items={persoonlijkMenu} />
+      ) : null}
 
-        {typeof beheerMenu !== "undefined" || beheerMenu !== null ? (
-          <MenuList name="Jouw bedrijf" items={beheerMenu} />
-        ) : null}
-      </Drawer>
-    </div>
+      {typeof beheerMenu !== "undefined" || beheerMenu !== null ? (
+        <MenuList name="Jouw bedrijf" items={beheerMenu} />
+      ) : null}
+    </Drawer>
   );
 };
 
