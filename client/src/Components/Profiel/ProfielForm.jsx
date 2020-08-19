@@ -7,6 +7,7 @@ import { Formik, Form } from "formik";
 import MyTextField from "../Form/MyTextField";
 import MySelectField from "../Form/MySelectField";
 import MyDatePicker from "../Form/MyDatePickers";
+import MyAutoTextField from "../Form/MyAutoTextField";
 
 const useStyles = makeStyles((theme) => ({
   generalForm: {
