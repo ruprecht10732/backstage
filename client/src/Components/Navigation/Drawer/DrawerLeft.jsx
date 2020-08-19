@@ -16,6 +16,7 @@ const useStyles = makeStyles({
     background: "#F2F4F5",
     border: "none",
     width: drawerWidth,
+    height: "100%",
   },
 });
 

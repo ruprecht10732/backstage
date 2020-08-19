@@ -36,7 +36,6 @@ function ProfielHeader() {
         <ListItem alignItems="center">
           <Avatar>RO</Avatar>
           <Typography className={classes.Name} variant="h5">
-            {" "}
             Robin Oost
           </Typography>
         </ListItem>

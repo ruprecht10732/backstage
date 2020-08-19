@@ -22,6 +22,7 @@ function Profiel() {
       alignItems="center"
     >
       <ProfielHeader />
+      <ProfielSubHeader />
       <ProfielContent />
     </Grid>
   );
