@@ -11,19 +11,16 @@ const MenuList = ({ name, items }) => {
   const menu = items;
 
   return (
-    <>
-      <List
-        component="nav"
-        dense
-        subheader={
-          <ListSubheader disableSticky id="nested-list-subheader">
-            <Typography variant="subtitle2">{name}</Typography>
-          </ListSubheader>
-        }
-      >
-        <MenuListItems items={menu} />
-      </List>
-    </>
+    <List
+      dense
+      subheader={
+        <ListSubheader disableSticky id="nested-list-subheader">
+          <Typography variant="subtitle2">{name}</Typography>
+        </ListSubheader>
+      }
+    >
+      <MenuListItems items={menu} />
+    </List>
   );
 };
 

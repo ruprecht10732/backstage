@@ -1,15 +1,9 @@
-import React, { useState } from "react";
-import {
-  makeStyles,
-  Grid,
-  FormControlLabel,
-  Switch,
-  Fab,
-} from "@material-ui/core";
+import React from "react";
+import { makeStyles, Grid, Typography } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
-import { Formik, Form, useField } from "formik";
+import { Formik, Form } from "formik";
 import MyTextField from "../Form/MyTextField";
 import MySelectField from "../Form/MySelectField";
 import MyDatePicker from "../Form/MyDatePickers";
@@ -23,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
   generalInput: {
     marginBottom: "5%",
     minWidth: "100%",
-  },
-  notAllowed: {
-    cursor: "not-allowed",
   },
   formMargin: {
     marginTop: "10%",
@@ -57,11 +48,27 @@ const validationSchema = Yup.object({
       "^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$",
       "Dit is geen geldige naam"
     ),
+  emailAdres: Yup.string()
+    .required("Dit is een verplicht veld")
+    .max(75, "Maximaal 75 karakters")
+    .min(2, "Minimaal 2 karakters")
+    .email("Dit is geen geldig email adres"),
   telefoonNummer: Yup.string()
     .required("Dit is een verplicht veld")
-    .matches("^[0-9]*$", "Alleen cijfers")
+    .matches(
+      "^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$",
+      "Dit is geen geldig telefoonnummer"
+    )
     .max(10, "Maximaal 10 cijfers")
     .min(10, "Minimaal 10 cijfers"),
+  bankRekeningNummer: Yup.string()
+    .required("dit is een verplicht veld")
+    .matches(
+      "^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}$",
+      "Dit is geen geldig IBAN nummer"
+    )
+    .max(18, "Een geldig Nederlands IBAN nummer bestaat uit 18 tekens")
+    .min(18, "Een geldig Nederlands IBAN nummer bestaat uit 18 tekens"),
 });
 
 function ProfielForm({ isEditable }) {
@@ -70,10 +77,11 @@ function ProfielForm({ isEditable }) {
   return (
     <Formik
       initialValues={{
-        firstName: "Robin",
-        lastName: "Oost",
-        nationaliteit: "Nederlandse",
+        firstName: "",
+        lastName: "",
+        nationaliteit: "",
         woonplaats: "",
+        emailAdres: "",
         geboorteDatum: "",
         geslacht: "",
         bankRekeningNummer: "",
@@ -128,8 +136,8 @@ function ProfielForm({ isEditable }) {
           <Grid item xs={12}>
             <MyTextField
               className={classes.generalInput}
-              label="Telefoonnummer"
-              name="telefoonNummer"
+              label="Email"
+              name="emailAdres"
               disabled={isEditable ? false : true}
               variant={isEditable ? "outlined" : "standard"}
               required={true}
@@ -138,8 +146,8 @@ function ProfielForm({ isEditable }) {
           <Grid item xs={12}>
             <MyTextField
               className={classes.generalInput}
-              label="IBAN nummer"
-              name="bankRekeningNummer"
+              label="Mobiel"
+              name="telefoonNummer"
               disabled={isEditable ? false : true}
               variant={isEditable ? "outlined" : "standard"}
               required={true}
@@ -153,6 +161,27 @@ function ProfielForm({ isEditable }) {
               variant={isEditable ? "filled" : "standard"}
               autowidth={true}
             />
+          </Grid>
+          <Grid item xs={12}>
+            <MyTextField
+              className={classes.generalInput}
+              label="IBAN nummer"
+              name="bankRekeningNummer"
+              disabled={isEditable ? false : true}
+              variant={isEditable ? "outlined" : "standard"}
+              required={true}
+            />
+            <Grid className={classes.generalInput} item xs={12}>
+              {isEditable ? (
+                <Typography color="textSecondary" variant="subtitle">
+                  Geef een geldig Nederlands IBAN nummer op. Let op! Door dit
+                  veld in te vullen verklaar je dat dit rekeningnummer op jouw
+                  naam staat.
+                </Typography>
+              ) : (
+                ""
+              )}
+            </Grid>
           </Grid>
 
           <Grid item xs={12}>
@@ -168,16 +197,7 @@ function ProfielForm({ isEditable }) {
                 Opslaan
               </Button>
             ) : (
-              <Button
-                disabled
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<SaveIcon />}
-                type="submit"
-              >
-                Opslaan
-              </Button>
+              " "
             )}
           </Grid>
         </Form>

@@ -3,7 +3,7 @@ import React from "react";
 // Imports from Link and Breadcrumbs components from "@material-ui/"
 import MenuList from "./MenuList/MenuList";
 import MenuItems from "../../../static/menu/menu.js";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Grid } from "@material-ui/core";
 
 const drawerWidth = 200;
 
@@ -16,7 +16,8 @@ const useStyles = makeStyles({
     background: "#F2F4F5",
     border: "none",
     width: drawerWidth,
-    height: "100%",
+    minHeight: "100vh",
+    maxWidth: "100%",
   },
 });
 
@@ -45,13 +46,19 @@ const DrawerLeft = () => {
         paperAnchorLeft: classes.drawerPaper,
       }}
     >
-      {typeof persoonlijkMenu !== "undefined" || persoonlijkMenu !== null ? (
-        <MenuList name="Persoonlijk" items={persoonlijkMenu} />
-      ) : null}
-
-      {typeof beheerMenu !== "undefined" || beheerMenu !== null ? (
-        <MenuList name="Jouw bedrijf" items={beheerMenu} />
-      ) : null}
+      <Grid container direction="row" alignContent="center" xs={12} spacing={3}>
+        <Grid item xs={12}>
+          {typeof persoonlijkMenu !== "undefined" ||
+          persoonlijkMenu !== null ? (
+            <MenuList name="Persoonlijk" items={persoonlijkMenu} />
+          ) : null}
+        </Grid>
+        <Grid item xs={12}>
+          {typeof beheerMenu !== "undefined" || beheerMenu !== null ? (
+            <MenuList name="Jouw bedrijf" items={beheerMenu} />
+          ) : null}
+        </Grid>
+      </Grid>
     </Drawer>
   );
 };
