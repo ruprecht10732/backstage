@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server with express, nodeje and mysql",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mysql",
+    "api"
+  ],
+  "author": "Robin Oost",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "epxress": "0.0.1-security",
+    "mysql": "^2.18.1"
+  }
+}
