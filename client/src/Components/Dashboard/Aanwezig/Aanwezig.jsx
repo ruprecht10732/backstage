@@ -10,26 +10,25 @@ import {
   Button,
   Grid,
 } from "@material-ui/core";
-import VerlofContent from "./VerlofContent/VerlofContent";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    borderTop: "2px green solid",
+    borderTop: "2px blue solid",
   },
   buttonCard: {
-    borderColor: "green",
-    color: "green",
+    borderColor: "blue",
+    color: "blue",
     "&:hover": {
-      background: "green",
-      borderColor: "green",
+      background: "blue",
+      borderColor: "blue",
       color: "white",
     },
   },
 }));
 
-function Verlof() {
+function Aanwezig() {
   const classes = useStyles();
 
   return (
@@ -43,15 +42,13 @@ function Verlof() {
           <CardHeader
             disableTypography
             title={
-              <Typography variant="subtitle2">Komende verlofdagen</Typography>
+              <Typography variant="subtitle2">Vandaag aanwezig</Typography>
             }
           ></CardHeader>
         </Grid>
       </Grid>
       <Divider />
-      <CardContent>
-        <VerlofContent />
-      </CardContent>
+      <CardContent></CardContent>
       <CardActions>
         <Grid container spacing={1} direction="row">
           <Grid container item xs={12} justify="center">
@@ -62,7 +59,7 @@ function Verlof() {
               startIcon={<HourglassEmptyIcon />}
               endIcon={<ArrowRightAltIcon />}
             >
-              Bekijk wie er afwezig is
+              Bekijk wie er aanwezig is
             </Button>
           </Grid>
         </Grid>
@@ -71,4 +68,4 @@ function Verlof() {
   );
 }
 
-export default Verlof;
+export default Aanwezig;

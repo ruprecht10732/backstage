@@ -2,24 +2,16 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import Taken from "./Taken/Taken";
 import Verlof from "./Verlof/Verlof";
-import Welkom from "./Welkom/Welkom";
-import Funnel from "./Funnel/Funnel";
+import Aanwezig from "./Aanwezig/Aanwezig";
 
 function Dashboard() {
   return (
     //   Full width content container
-    <Grid container direction="row" xs={12} spacing={2}>
+    <Grid container direction="row" xs={12} spacing={5}>
       {/* Left side */}
-      <Grid
-        container
-        item
-        direction="row"
-        spacing={2}
-        xs={8}
-        alignItems="flex-start"
-      >
+      <Grid container item direction="row" spacing={5} xs={9} justify="stretch">
         <Grid item xs={12} lg={6}>
-          <Welkom />
+          <Aanwezig />
         </Grid>
         <Grid item xs={12} lg={6}>
           <Verlof />
@@ -27,7 +19,7 @@ function Dashboard() {
       </Grid>
 
       {/* Right side */}
-      <Grid container item direction="row" xs={4} alignItems="flex-start">
+      <Grid container item direction="row" xs={3} alignItems="flex-start">
         <Grid item xs={12}>
           <Taken />
         </Grid>

@@ -2,16 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-import {
-  Grid,
-  Button,
-  FormControl,
-  FormLabel,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
-import { Form } from "formik";
+import { Grid, Button, FormControlLabel, Checkbox } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles((theme) => ({

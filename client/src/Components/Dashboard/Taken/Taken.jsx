@@ -1,31 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
   Typography,
   CardHeader,
-  IconButton,
   makeStyles,
-  Collapse,
   Divider,
+  Grid,
+  CardActions,
+  Button,
 } from "@material-ui/core";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import TakenLijst from "./TakenLijst/TakenLijst";
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 
 const useStyles = makeStyles((theme) => ({
   card: {
     borderTop: "2px red solid",
   },
+  buttonCard: {
+    borderColor: "red",
+    color: "red",
+    "&:hover": {
+      background: "red",
+      borderColor: "red",
+      color: "white",
+    },
+  },
 }));
 
 function Taken() {
   const classes = useStyles();
-
-  const [expand, setExpand] = useState(true);
-  const handleExpandClick = () => {
-    setExpand(!expand);
-  };
 
   return (
     <Card
@@ -33,20 +37,32 @@ function Taken() {
         root: classes.card,
       }}
     >
-      <CardHeader
-        title={<Typography variant="subtitle2">Openstaande taken</Typography>}
-        action={
-          <IconButton onClick={handleExpandClick} aria-label="settings">
-            {expand ? <ExpandLess /> : <ExpandMore />}
-          </IconButton>
-        }
-      ></CardHeader>
+      <Grid container spacing={1} direction="row">
+        <Grid container item xs={12} justify="center">
+          <CardHeader
+            title={
+              <Typography variant="subtitle2">Openstaande taken</Typography>
+            }
+          ></CardHeader>
+        </Grid>
+      </Grid>
       <Divider />
-      <CardContent>
-        <Collapse in={expand} timeout="auto">
-          <TakenLijst />
-        </Collapse>
-      </CardContent>
+      <CardContent></CardContent>
+      <CardActions>
+        <Grid container spacing={1} direction="row">
+          <Grid container item xs={12} justify="center">
+            <Button
+              className={classes.buttonCard}
+              variant="outlined"
+              color="primary"
+              startIcon={<FormatListBulletedIcon />}
+              endIcon={<ArrowRightAltIcon />}
+            >
+              Beheer taken
+            </Button>
+          </Grid>
+        </Grid>
+      </CardActions>
     </Card>
   );
 }
