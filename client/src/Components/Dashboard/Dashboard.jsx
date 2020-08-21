@@ -9,11 +9,11 @@ function Dashboard() {
     //   Full width content container
     <Grid container direction="row" xs={12} spacing={5}>
       {/* Left side */}
-      <Grid container item direction="row" spacing={5} xs={9} justify="stretch">
+      <Grid container item direction="row" spacing={4} xs={9} justify="stretch">
         <Grid item xs={12} lg={6}>
           <Aanwezig />
         </Grid>
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={5}>
           <Verlof />
         </Grid>
       </Grid>

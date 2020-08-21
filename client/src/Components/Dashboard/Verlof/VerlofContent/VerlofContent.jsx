@@ -1,5 +1,11 @@
 import React from "react";
-import { Grid, Typography, Avatar, makeStyles } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Avatar,
+  makeStyles,
+  Tooltip,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
@@ -27,29 +33,37 @@ function VerlofContent() {
       <Grid container item xs={4} justify="center">
         <Typography variant="subtitle">Vandaag</Typography>
         <Grid container item xs={12} justify="center">
-          <Avatar className={classes.small}>RO</Avatar>
-          <Avatar className={classes.small}>ID</Avatar>
-          <Avatar className={classes.small}>AB</Avatar>
-          <Avatar className={classes.small}>RO</Avatar>
-          <Avatar className={classes.small}>RO</Avatar>
-          <Avatar className={classes.small}>RO</Avatar>
+          <Tooltip title="Robin Oost">
+            <Avatar className={classes.small}>RO</Avatar>
+          </Tooltip>
+          <Tooltip title="Robin Oost">
+            <Avatar className={classes.small}>RO</Avatar>
+          </Tooltip>
+          <Tooltip title="Robin Oost">
+            <Avatar className={classes.small}>RO</Avatar>
+          </Tooltip>
+          <Tooltip title="Robin Oost">
+            <Avatar className={classes.small}>RO</Avatar>
+          </Tooltip>
         </Grid>
       </Grid>
       <Grid container item xs={4} justify="center">
         <Typography variant="subtitle">Morgen</Typography>
         <Grid container item xs={12} justify="center">
-          <Avatar className={classes.small}>RO</Avatar>
-          <Avatar className={classes.small}>ID</Avatar>
-          <Avatar className={classes.small}>AB</Avatar>
-          <Avatar className={classes.small}>RO</Avatar>
+          <Tooltip title="Robin Oost">
+            <Avatar className={classes.small}>RO</Avatar>
+          </Tooltip>
+          <Tooltip title="Robin Oost">
+            <Avatar className={classes.small}>RO</Avatar>
+          </Tooltip>
         </Grid>
       </Grid>
       <Grid container item xs={4} justify="center">
         <Typography variant="subtitle">7 dagen</Typography>
         <Grid container item xs={12} justify="center">
-          <Avatar className={classes.small}>ID</Avatar>
-          <Avatar className={classes.small}>AB</Avatar>
-          <Avatar className={classes.small}>RO</Avatar>
+          <Tooltip title="Ilias Derawi">
+            <Avatar className={classes.small}>ID</Avatar>
+          </Tooltip>
         </Grid>
       </Grid>
     </Grid>

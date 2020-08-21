@@ -12,18 +12,18 @@ import {
 } from "@material-ui/core";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
+import AanwezigContent from "./AanwezigContent/AanwezigContent";
 
 const useStyles = makeStyles((theme) => ({
   card: {
     borderTop: "2px blue solid",
   },
   buttonCard: {
-    borderColor: "blue",
+    border: "none",
     color: "blue",
     "&:hover": {
-      background: "blue",
-      borderColor: "blue",
-      color: "white",
+      border: "none",
+      color: "#88B5E0",
     },
   },
 }));
@@ -48,11 +48,14 @@ function Aanwezig() {
         </Grid>
       </Grid>
       <Divider />
-      <CardContent></CardContent>
+      <CardContent>
+        <AanwezigContent />
+      </CardContent>
       <CardActions>
         <Grid container spacing={1} direction="row">
           <Grid container item xs={12} justify="center">
             <Button
+              size="small"
               className={classes.buttonCard}
               variant="outlined"
               color="primary"

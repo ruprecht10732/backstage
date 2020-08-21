@@ -19,12 +19,11 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "2px green solid",
   },
   buttonCard: {
-    borderColor: "green",
+    border: "none",
     color: "green",
     "&:hover": {
-      background: "green",
-      borderColor: "green",
-      color: "white",
+      border: "none",
+      color: "#90EE90",
     },
   },
 }));
@@ -56,6 +55,7 @@ function Verlof() {
         <Grid container spacing={1} direction="row">
           <Grid container item xs={12} justify="center">
             <Button
+              size="small"
               className={classes.buttonCard}
               variant="outlined"
               color="primary"

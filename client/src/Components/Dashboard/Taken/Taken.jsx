@@ -18,12 +18,11 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "2px red solid",
   },
   buttonCard: {
-    borderColor: "red",
+    border: "none",
     color: "red",
     "&:hover": {
-      background: "red",
-      borderColor: "red",
-      color: "white",
+      border: "none",
+      color: "#EB8283",
     },
   },
 }));
@@ -52,6 +51,7 @@ function Taken() {
         <Grid container spacing={1} direction="row">
           <Grid container item xs={12} justify="center">
             <Button
+              size="small"
               className={classes.buttonCard}
               variant="outlined"
               color="primary"
