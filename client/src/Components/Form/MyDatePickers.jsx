@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DatePickers({
+  defaultDate,
+  name,
+  id,
+  label,
   required,
   variant,
   autoWidth,
@@ -25,12 +29,12 @@ export default function DatePickers({
     <TextField
       disabled={disabled}
       variant={variant}
-      requires={required}
-      name="geboorteDatum"
-      id="geboorteDatum"
-      label="Geboortedatum"
+      required={required}
+      name={name}
+      id={id}
+      label={label}
       type="date"
-      defaultValue="1999-01-01"
+      defaultValue={defaultDate}
       className={classes.textField}
       InputLabelProps={{
         shrink: true,

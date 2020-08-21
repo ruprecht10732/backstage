@@ -7,7 +7,6 @@ import { Formik, Form } from "formik";
 import MyTextField from "../Form/MyTextField";
 import MySelectField from "../Form/MySelectField";
 import MyDatePicker from "../Form/MyDatePickers";
-import MyAutoTextField from "../Form/MyAutoTextField";
 
 const useStyles = makeStyles((theme) => ({
   generalForm: {
@@ -19,8 +18,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5%",
     minWidth: "100%",
   },
-  formMargin: {
-    marginTop: "10%",
+  fieldContainer: {
+    background: "#F2F4F5",
+    padding: "8%",
   },
 }));
 
@@ -96,8 +96,8 @@ function ProfielForm({ isEditable }) {
       validationSchema={validationSchema}
     >
       {({ values, isSubmitting }) => (
-        <Form>
-          <Grid item xs={12} className={classes.formMargin}>
+        <Form className={classes.fieldContainer}>
+          <Grid item xs={12}>
             <MyTextField
               className={classes.generalInput}
               label="Naam"
@@ -122,6 +122,8 @@ function ProfielForm({ isEditable }) {
               disabled={isEditable ? false : true}
               variant={isEditable ? "outlined" : "standard"}
               required={true}
+              label="Geboortedatum"
+              name="geboorteDatum"
             />
           </Grid>
           <Grid item xs={12}>
@@ -159,7 +161,7 @@ function ProfielForm({ isEditable }) {
               inputLabel="Geslacht"
               name="geslacht"
               disabled={isEditable ? false : true}
-              variant={isEditable ? "filled" : "standard"}
+              variant={isEditable ? "outlined" : "standard"}
               autowidth={true}
             />
           </Grid>

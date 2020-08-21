@@ -9,6 +9,8 @@ import {
 } from "@material-ui/core";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import SubjectIcon from "@material-ui/icons/Subject";
+import { NavLink, useRouteMatch } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,9 +21,17 @@ const useStyles = makeStyles((theme) => ({
   Name: {
     paddingLeft: "0.3vw",
   },
+  active: {
+    background: "#fff",
+    color: "black",
+    "&:hover": {
+      background: "#fff",
+    },
+  },
 }));
 
 function ProfielHeader() {
+  let { url } = useRouteMatch();
   const classes = useStyles();
   return (
     <Grid
@@ -37,10 +47,22 @@ function ProfielHeader() {
       <List>
         <ListItem alignItems="center">
           <ButtonGroup variant="contained" color="primary">
-            <Button startIcon={<PersonOutlineIcon />}>
+            <Button
+              component={NavLink}
+              activeClassName={classes.active}
+              to={`${url}/gegevens`}
+              startIcon={<PersonOutlineIcon />}
+            >
               Persoonlijke gegevens
             </Button>
-            <Button startIcon={<SubjectIcon />}>Contract informatie</Button>
+            <Button
+              component={NavLink}
+              activeClassName={classes.active}
+              to={`${url}/contract-informatie`}
+              startIcon={<SubjectIcon />}
+            >
+              Contract informatie
+            </Button>
           </ButtonGroup>
         </ListItem>
       </List>

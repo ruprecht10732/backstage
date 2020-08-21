@@ -24,9 +24,6 @@ function Dashboard() {
         <Grid item xs={12} lg={6}>
           <Verlof />
         </Grid>
-        <Grid item xs={12} lg={6}>
-          <Funnel />
-        </Grid>
       </Grid>
 
       {/* Right side */}

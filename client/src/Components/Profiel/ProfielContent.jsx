@@ -1,10 +1,8 @@
 import React from "react";
-import { Paper, Grid, makeStyles } from "@material-ui/core";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import FingerprintIcon from "@material-ui/icons/Fingerprint";
-import ExploreIcon from "@material-ui/icons/Explore";
-import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
-import ProfielSection from "./ProfielSection";
+import { Paper, makeStyles } from "@material-ui/core";
+import { Route, useRouteMatch, Switch } from "react-router-dom";
+import Persoonlijk from "./Persoonlijk";
+import Contract from "./Contract";
 
 const useStyles = makeStyles((theme) => ({
   profielPaper: {
@@ -15,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfielContent() {
   const classes = useStyles();
+  let { path } = useRouteMatch();
 
   return (
     <Paper
@@ -22,32 +21,17 @@ function ProfielContent() {
         root: classes.profielPaper,
       }}
     >
-      <Grid container xs={12} spacing={10}>
-        <ProfielSection
-          title="Persoonlijke gegevens"
-          subTitle="Vul je persoonlijke gegevens in"
-          icon={<PermIdentityIcon color="primary" />}
-          formulier="ProfielForm"
-        />
-        <ProfielSection
-          title="Identiteitskaart nummer"
-          subTitle="Vul het nummer van je identiteitskaart in"
-          icon={<FingerprintIcon color="primary" />}
-          formulier="Identiteit"
-        />
-        <ProfielSection
-          title="Adres"
-          subTitle="Vul hier je adres gegevens in"
-          icon={<ExploreIcon color="primary" />}
-          formulier="Adres"
-        />
-        <ProfielSection
-          title="Noodgeval contactpersoon"
-          subTitle=" Vul hier wat gegevens over je noodgevallen contact persoon"
-          icon={<LocalHospitalIcon color="secondary" />}
-          formulier="NoodContact"
-        />
-      </Grid>
+      <Switch>
+        <Route exact path={path}>
+          <Persoonlijk />
+        </Route>
+        <Route path={`${path}/gegevens`}>
+          <Persoonlijk />
+        </Route>
+        <Route path={`${path}/contract-informatie`}>
+          <Contract />
+        </Route>
+      </Switch>
     </Paper>
   );
 }

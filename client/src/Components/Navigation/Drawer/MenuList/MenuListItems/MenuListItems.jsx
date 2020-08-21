@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ListItemIcon, ListItemText, ListItem } from "@material-ui/core";
 import MenuListNestedItems from "../MenuListNestedItems/MenuListNestedItems";
+import { NavLink, useRouteMatch } from "react-router-dom";
 
 const MenuListItems = ({ items }) => {
   return (
@@ -15,7 +16,7 @@ const MenuListItems = ({ items }) => {
             name={item.text}
           />
         ) : (
-          <ListItem button key={item.id}>
+          <ListItem component={NavLink} button key={item.id} to={item.url}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>

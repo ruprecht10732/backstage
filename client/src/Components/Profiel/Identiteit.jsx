@@ -16,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5%",
     minWidth: "100%",
   },
-  formMargin: {
-    marginTop: "10%",
+  fieldContainer: {
+    background: "#F2F4F5",
+    padding: "8%",
   },
 }));
 
@@ -49,8 +50,8 @@ function Identiteit({ isEditable }) {
       validationSchema={validationSchema}
     >
       {({ values, isSubmitting }) => (
-        <Form>
-          <Grid item xs={12} className={classes.formMargin}>
+        <Form className={classes.fieldContainer}>
+          <Grid item xs={12}>
             <MyTextField
               className={classes.generalInput}
               label="Documentnummer"

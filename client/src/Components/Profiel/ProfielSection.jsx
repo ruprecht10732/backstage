@@ -4,8 +4,20 @@ import ProfielForm from "./ProfielForm";
 import Identiteit from "./Identiteit";
 import Adres from "./Adres";
 import NoodContact from "./NoodContact";
+import BasisInformatie from "./BasisInformatie";
+import Salaris from "./Salaris";
+import Documenten from "./Documenten";
+import Schema from "./Schema";
 
-function ProfielSection({ title, subTitle, icon, fontSize, color, formulier }) {
+function ProfielSection({
+  title,
+  subTitle,
+  icon,
+  fontSize,
+  color,
+  formulier,
+  aanpasbaar,
+}) {
   const [checked, setChecked] = React.useState(false);
 
   const toggleChecked = () => {
@@ -18,18 +30,22 @@ function ProfielSection({ title, subTitle, icon, fontSize, color, formulier }) {
         {icon}
         <Typography variant="h5">{title}</Typography>
         <Typography variant="paragraph">{subTitle}</Typography>
-        <div>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={checked}
-                onChange={toggleChecked}
-                color="primary"
-              />
-            }
-            label="Aanpassen"
-          />
-        </div>
+        {aanpasbaar === true ? (
+          <div>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={checked}
+                  onChange={toggleChecked}
+                  color="primary"
+                />
+              }
+              label="Aanpassen"
+            />
+          </div>
+        ) : (
+          " "
+        )}
       </Grid>
       <Grid item xs={6}>
         {(() => {
@@ -42,6 +58,14 @@ function ProfielSection({ title, subTitle, icon, fontSize, color, formulier }) {
               return <Adres isEditable={checked} />;
             case "NoodContact":
               return <NoodContact isEditable={checked} />;
+            case "BasisInformatie":
+              return <BasisInformatie />;
+            case "Salaris":
+              return <Salaris />;
+            case "Documenten":
+              return <Documenten />;
+            case "Schema":
+              return <Schema isEditable={checked} />;
             default:
               return "";
           }

@@ -2,10 +2,13 @@ import React from "react";
 import { CssBaseline, makeStyles } from "@material-ui/core";
 import Navigation from "../Navigation/Navigation";
 import Content from "../Content/Content";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    backgroundColor: "#F2F4F5",
+    height: "100%",
   },
   content: {
     flexGrow: 1,
@@ -19,13 +22,15 @@ function Layout() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Navigation />
-      <main className={classes.content}>
-        <Content />
-      </main>
-    </div>
+    <Router>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Navigation />
+        <main className={classes.content}>
+          <Content />
+        </main>
+      </div>
+    </Router>
   );
 }
 
