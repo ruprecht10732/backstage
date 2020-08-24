@@ -1,22 +1,30 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+let mysql = require("mysql");
+let config = require("./app/db/db_connect");
 
-const app = express();
+var express = require("express"),
+  app = express(),
+  port = process.env.PORT || 5050;
 
-// parse requests of content-type: application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type: application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome." });
+  res.send("Hallo");
 });
 
-require("./app/routes/customer.routes.js")(app);
-
-// set port, listen for requests
-app.listen(5000, () => {
-  console.log("Server is running on port 5000.");
+app.get("/charmain", (req, res) => {
+  res.send("Hallo Liefje");
 });
+
+console.log("todo list RESTful API server started on: " + port);
+
+let connection = mysql.createConnection(config);
+
+let sql = `SELECT * FROM Medewerkers`;
+connection.query(sql, (error, results, fields) => {
+  if (error) {
+    return console.error(error.message);
+  }
+  console.log(results);
+});
+
+connection.end();
+
+app.listen(port);
