@@ -6,7 +6,7 @@ var express = require("express"),
   port = process.env.PORT || 5050;
 
 app.get("/", (req, res) => {
-  res.send("!");
+  res.send("Wie is daar");
 });
 
 app.get("/charmain", (req, res) => {
