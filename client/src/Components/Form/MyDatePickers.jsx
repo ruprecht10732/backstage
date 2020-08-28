@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DatePickers({
-  defaultDate,
+  defaultValue,
   name,
   id,
   label,
@@ -34,7 +34,7 @@ export default function DatePickers({
       id={id}
       label={label}
       type="date"
-      defaultValue={defaultDate}
+      defaultValue={defaultValue}
       className={classes.textField}
       InputLabelProps={{
         shrink: true,

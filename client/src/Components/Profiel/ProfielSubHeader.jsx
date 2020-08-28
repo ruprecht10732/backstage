@@ -60,6 +60,7 @@ function ProfielHeader() {
               activeClassName={classes.active}
               to={`${url}/contract-informatie`}
               startIcon={<SubjectIcon />}
+              disabled
             >
               Contract informatie
             </Button>

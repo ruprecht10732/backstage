@@ -51,13 +51,19 @@ function ProfielSection({
         {(() => {
           switch (formulier) {
             case "ProfielForm":
-              return <ProfielForm isEditable={checked} />;
+              return (
+                <ProfielForm isEditable={checked} setChecked={toggleChecked} />
+              );
             case "Identiteit":
-              return <Identiteit isEditable={checked} />;
+              return (
+                <Identiteit isEditable={checked} setChecked={toggleChecked} />
+              );
             case "Adres":
-              return <Adres isEditable={checked} />;
+              return <Adres isEditable={checked} setChecked={toggleChecked} />;
             case "NoodContact":
-              return <NoodContact isEditable={checked} />;
+              return (
+                <NoodContact isEditable={checked} setChecked={toggleChecked} />
+              );
             case "BasisInformatie":
               return <BasisInformatie />;
             case "Salaris":

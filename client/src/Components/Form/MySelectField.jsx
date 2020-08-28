@@ -40,8 +40,8 @@ const MySelectField = ({
     >
       <InputLabel>{inputLabel}</InputLabel>
       <Select value="10" {...field} error={errorState}>
-        <MenuItem value={"man"}>Man</MenuItem>
-        <MenuItem value={"vrouw"}>Vrouw</MenuItem>
+        <MenuItem value={"man"}>man</MenuItem>
+        <MenuItem value={"vrouw"}>vrouw</MenuItem>
       </Select>
       <FormHelperText>{errorText}</FormHelperText>
     </FormControl>

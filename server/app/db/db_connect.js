@@ -1,15 +1,31 @@
-var mysql = require("mysql");
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "robinDB",
-  password: "S10732b54861!",
-  database: "dashboard",
+const mysql = require("mysql");
+
+// Get the Host from Environment or use default
+const host = process.env.DB_HOST || "localhost";
+
+// Get the User for DB from Environment or use default
+const user = process.env.DB_USER || "robinDB";
+
+// Get the Password for DB from Environment or use default
+const password = process.env.DB_PASS || "S10732b54861!";
+
+// Get the Database from Environment or use default
+const database = process.env.DB_DATABASE || "dashboard";
+
+// Create the connection with required details
+const db = mysql.createConnection({
+  host,
+  user,
+  password,
+  database,
 });
 
-connection.connect();
-
-connection.query("SELECT 1 + 1 AS solution", function (err, rows, fields) {
-  if (err) throw err;
-
-  console.log("The solution is: ", rows[0].solution);
+// make to connection to the database.
+db.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  console.log("successfully connected to DB");
 });
+
+module.exports = db;

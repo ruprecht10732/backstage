@@ -9,6 +9,7 @@ const MyTextField = ({
   className,
   label,
   required,
+  value,
   ...props
 }) => {
   const [field, meta] = useField(props);
@@ -26,6 +27,7 @@ const MyTextField = ({
       disabled={disabled}
       variant={variant}
       required={required}
+      InputLabelProps={{ shrink: true }}
     />
   );
 };

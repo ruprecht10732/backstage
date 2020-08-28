@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import MaterialTable from "material-table";
 import Axios from "axios";
 import { Grid, Paper, makeStyles } from "@material-ui/core";
+import moment from "moment";
+moment().format();
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,39 +12,64 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MedewerkersTabel() {
+function UrenTabel() {
+  function getDaysArrayByMonth() {
+    var daysInMonth = moment().daysInMonth();
+    var arrDays = [];
+
+    while (daysInMonth) {
+      var current = moment().date(daysInMonth);
+      arrDays.push(current);
+      daysInMonth--;
+    }
+
+    return arrDays;
+  }
+
+  var schedule = getDaysArrayByMonth();
+  schedule.forEach(function (item) {
+    console.log(item.format("DD/MM"));
+  });
+
   const classes = useStyles();
   const [entries, setEntries] = useState({
     data: [
       {
         id: "",
-        StartDatum: "",
         Functie: "",
-        Naam: "",
+        Werknemer: "",
         Achternaam: "",
         Email: "",
+        Mobiel: "",
+        Straat: "",
+        Huisnummer: "",
+        Toevoeging: "",
+        Postcode: "",
+        Woonplaats: "",
         NoodContact: "",
         NoodNummer: "",
+        Vestiging: "",
+        GeboorteDatum: "",
       },
     ],
   });
 
   const [state] = React.useState({
     columns: [
-      { title: "Functie", field: "Functie", editable: false },
-      { title: "Naam", field: "Naam" },
-      { title: "Achternaam", field: "Achternaam" },
-      { title: "Geboorte datum", field: "GeboorteDatum", type: "date" },
-      { title: "Email", field: "Email" },
-      { title: "Mobiel", field: "Mobiel" },
-      { title: "Straat", field: "Straat" },
-      { title: "Huisnummer", field: "Huisnummer" },
-      { title: "Toevoeging", field: "Toevoeging" },
-      { title: "Postcode", field: "Postcode" },
-      { title: "Woonplaats", field: "Woonplaats" },
-      { title: "Nood Contact", field: "NoodContact", editable: false },
-      { title: "Nood Nummer", field: "NoodNummer", editable: false },
-      { title: "Vestiging", field: "Vestiging", editable: false },
+      { title: "Werknemer", field: "Werknemer" },
+      { title: "Gewerkte uren", field: "GewerkteUren", type: "int" },
+      {
+        title: "Uren distributie",
+        field: "UrenDistributie",
+        editable: false,
+        filtering: false,
+      },
+      {
+        title: "Status",
+        field: "Status",
+        editable: false,
+        filtering: false,
+      },
     ],
   });
 
@@ -54,7 +81,7 @@ function MedewerkersTabel() {
           data.push({
             id: el.medewerker_ID,
             Functie: el.Rol,
-            Naam: el.Naam,
+            Werknemer: el.AchterNaam + ", " + el.Naam,
             Achternaam: el.AchterNaam,
             Email: el.Email,
             Mobiel: el.Mobiel,
@@ -108,7 +135,7 @@ function MedewerkersTabel() {
             exportPDFName: "Exporteren als PDF",
           },
           header: {
-            actions: "Acties",
+            actions: "",
           },
           body: {
             emptyDataSourceMessage: "Geen gegevens om weer te geven",
@@ -120,11 +147,23 @@ function MedewerkersTabel() {
         title="Alle actieve medewerkers"
         options={{
           filtering: true,
-          padding: "dense",
-          pageSize: "10",
-          pageSizeOptions: [5, 10, 20, 30, 40, 50, 100, 150],
+          pageSize: "7",
+          pageSizeOptions: [7, 31],
           paginationType: "stepped",
           showTitle: false,
+          actionsColumnIndex: -1,
+          searchFieldAlignment: "left",
+          search: false,
+          exportButton: true,
+          headerStyle: {
+            backgroundColor: "#f2f4f5",
+            color: "#555d61",
+            border: "1px 1px solid #dfe3e6",
+          },
+          rowStyle: {
+            color: "#1c242b",
+            border: "1px 1px solid #dfe3e6",
+          },
         }}
         columns={state.columns}
         data={entries.data}
@@ -163,4 +202,4 @@ function MedewerkersTabel() {
   );
 }
 
-export default MedewerkersTabel;
+export default UrenTabel;

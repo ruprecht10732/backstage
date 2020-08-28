@@ -6,6 +6,7 @@ import {
   ListItem,
   ButtonGroup,
   Button,
+  Typography,
 } from "@material-ui/core";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import { NavLink, useRouteMatch } from "react-router-dom";
@@ -29,8 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MedewerkersHeader() {
-  let { url } = useRouteMatch();
+function UrenHeader() {
   const classes = useStyles();
   return (
     <Grid
@@ -44,30 +44,13 @@ function MedewerkersHeader() {
       alignItems="center"
     >
       <List>
-        <ListItem alignItems="center">
-          <ButtonGroup variant="contained" color="primary">
-            <Button
-              component={NavLink}
-              activeClassName={classes.active}
-              to={`${url}/gegevens`}
-              startIcon={<PersonOutlineIcon />}
-            >
-              Medewerkers
-            </Button>
-            <Button
-              component={NavLink}
-              activeClassName={classes.active}
-              to={`${url}/medewerker-aanmaken`}
-              startIcon={<AddCircleOutlineIcon />}
-              disabled
-            >
-              Nieuwe medewerker aanmaken
-            </Button>
-          </ButtonGroup>
+        <ListItem>
+          <Typography variant="h5">Uren registratie</Typography>
         </ListItem>
+        <ListItem>Augustus</ListItem>
       </List>
     </Grid>
   );
 }
 
-export default MedewerkersHeader;
+export default UrenHeader;

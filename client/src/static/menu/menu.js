@@ -13,6 +13,7 @@ import CalendarViewDayOutlinedIcon from "@material-ui/icons/CalendarViewDayOutli
 import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import InsertDriveFileOutlinedIcon from "@material-ui/icons/InsertDriveFileOutlined";
 import UpdateOutlinedIcon from "@material-ui/icons/UpdateOutlined";
+import EuroIcon from "@material-ui/icons/Euro";
 
 const menu = [
   {
@@ -23,7 +24,7 @@ const menu = [
     icon: <DashboardIcon />,
     url: "/dashboard",
     beta: false,
-    public: true,
+    public: false,
     new: false,
     visibility: "everyone",
   },
@@ -31,9 +32,9 @@ const menu = [
     id: 2,
     order: 3,
     menuType: "Persoonlijk",
-    text: "Clock in",
-    icon: <TimerIcon />,
-    url: "/clock-in",
+    text: "Verdiensten",
+    icon: <EuroIcon />,
+    url: "/verdiensten",
     beta: false,
     public: true,
     new: false,
@@ -59,7 +60,7 @@ const menu = [
     icon: <HourglassEmptyIcon />,
     url: "/verlof",
     beta: false,
-    public: true,
+    public: false,
     new: false,
     visibility: "everyone",
   },
@@ -71,7 +72,7 @@ const menu = [
     icon: <DescriptionIcon />,
     url: "/mijn-documenten",
     beta: false,
-    public: true,
+    public: false,
     new: false,
     visibility: "everyone",
   },
@@ -83,7 +84,7 @@ const menu = [
     icon: <FormatListBulletedIcon />,
     url: "/mijn-taken",
     beta: false,
-    public: true,
+    public: false,
     new: false,
     visibility: "everyone",
     nested: false,
@@ -108,7 +109,7 @@ const menu = [
     icon: <TodayIcon />,
     url: "/beheer/agenda",
     beta: false,
-    public: true,
+    public: false,
     new: false,
     visibility: "administrator, manager",
   },
@@ -132,7 +133,7 @@ const menu = [
     icon: <UpdateOutlinedIcon />,
     url: "/beheer/shifts",
     beta: false,
-    public: true,
+    public: false,
     new: false,
     visibility: "administrator, manager",
   },
@@ -144,7 +145,7 @@ const menu = [
     icon: <InsertDriveFileOutlinedIcon />,
     url: "/beheer/documenten",
     beta: false,
-    public: true,
+    public: false,
     new: false,
     visibility: "administrator, manager",
   },

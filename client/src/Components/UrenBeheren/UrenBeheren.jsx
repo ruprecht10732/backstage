@@ -1,8 +1,7 @@
 import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
-import MedewerkersHeader from "./MedewerkersHeader";
-import MedewerkersOverzicht from "./MedewerkersOverzicht";
-import MedewerkerAanmakenFormulier from "./MedewerkerAanmakenFormulier/MedewerkerAanmakenFormulier";
+import UrenHeader from "./UrenHeader";
+import UrenOverzicht from "./UrenOverzicht";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -21,8 +20,8 @@ function Medewerkers() {
       spacing={1}
       alignItems="center"
     >
-      <MedewerkersHeader />
-      <MedewerkersOverzicht />
+      <UrenHeader />
+      <UrenOverzicht />
     </Grid>
   );
 }

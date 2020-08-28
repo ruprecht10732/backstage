@@ -3,6 +3,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Profiel from "../Profiel/Profiel";
 import { Switch, Route } from "react-router-dom";
 import Medewerkers from "../Medewerkers/Medewerkers";
+import UrenBeheren from "../UrenBeheren/UrenBeheren";
 
 function Content(props) {
   return (
@@ -18,6 +19,9 @@ function Content(props) {
       </Route>
       <Route path="/beheer/medewerkers">
         <Medewerkers />
+      </Route>
+      <Route path="/beheer/uren-beheren">
+        <UrenBeheren />
       </Route>
     </Switch>
   );
