@@ -8,8 +8,8 @@ import MedewerkerAanmakenFormulier from "./MedewerkerAanmakenFormulier/Medewerke
 
 const useStyles = makeStyles((theme) => ({
   profielPaper: {
-    width: "100%",
     padding: theme.spacing(3),
+    minHeight: (window.innerHeight / 100) * 80,
   },
 }));
 
@@ -23,47 +23,57 @@ function MedewerkersOverzicht() {
         root: classes.profielPaper,
       }}
     >
-      <Grid container xs={12} spacing={5}>
-        <Switch>
-          <Route exact path={path}>
-            <Grid item container xs={12}>
-              <Grid item xs={12}>
-                <MedewerkersSection
-                  title="Medewerkers"
-                  subTitle="Lijst van alle actieve medewerkers, je kan ze hier ook bewerken"
-                  icon={<BubbleChartIcon color="primary" />}
-                  aanpasbaar={false}
-                />
-              </Grid>
+      <Switch>
+        <Route exact path={path}>
+          <Grid item container xs={12}>
+            <Grid item xs={12}>
+              <MedewerkersSection
+                title="Medewerkers"
+                subTitle="Lijst van alle actieve medewerkers, je kan ze hier ook bewerken"
+                icon={<BubbleChartIcon color="primary" />}
+                aanpasbaar={false}
+              />
             </Grid>
-            <Grid item container xs={12}>
-              <Grid item xs={12}>
-                <MedewerkersTabel />
-              </Grid>
+          </Grid>
+          <Grid item container xs={12}>
+            <Grid item xs={12}>
+              <MedewerkersTabel />
             </Grid>
-          </Route>
-          <Route exact path={`${path}/gegevens`}>
-            <Grid item container xs={12}>
-              <Grid item xs={12}>
-                <MedewerkersSection
-                  title="Medewerkers"
-                  subTitle="Lijst van alle actieve medewerkers, je kan ze hier ook bewerken"
-                  icon={<BubbleChartIcon color="primary" />}
-                  aanpasbaar={false}
-                />
-              </Grid>
+          </Grid>
+        </Route>
+        <Route exact path={`${path}/gegevens`}>
+          <Grid item container xs={12}>
+            <Grid item xs={12}>
+              <MedewerkersSection
+                title="Medewerkers"
+                subTitle="Lijst van alle actieve medewerkers, je kan ze hier ook bewerken"
+                icon={<BubbleChartIcon color="primary" />}
+                aanpasbaar={false}
+              />
             </Grid>
-            <Grid item container xs={12}>
-              <Grid item xs={12}>
-                <MedewerkersTabel />
-              </Grid>
+          </Grid>
+          <Grid item container xs={12}>
+            <Grid item xs={12}>
+              <MedewerkersTabel />
             </Grid>
-          </Route>
-          <Route path={`${path}/medewerker-aanmaken`}>
-            <MedewerkerAanmakenFormulier />
-          </Route>
-        </Switch>
-      </Grid>
+          </Grid>
+        </Route>
+        <Route path={`${path}/medewerker-aanmaken`}>
+          <Grid container spacing={2} direction="row" justify="center">
+            <Grid item xs={6}>
+              <MedewerkersSection
+                title="Medewerker uitnodigen"
+                subTitle="Nodig een nieuwe medewerker uit doormiddel van een email adres, de medewerker ontvangt dan een eenmalig wachtwoord en moet dan zijn gegevens aanvullen. Tegelijkertijd dient hij ook de benodigde documenten te ondertekenen alvorens hij gebruik kan maken van het platform."
+                icon={<BubbleChartIcon color="primary" />}
+                aanpasbaar={false}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <MedewerkerAanmakenFormulier />
+            </Grid>
+          </Grid>
+        </Route>
+      </Switch>
     </Paper>
   );
 }

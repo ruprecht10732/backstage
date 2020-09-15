@@ -10,7 +10,6 @@ import {
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import SubjectIcon from "@material-ui/icons/Subject";
 import { NavLink, useRouteMatch } from "react-router-dom";
-import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +59,6 @@ function ProfielHeader() {
               activeClassName={classes.active}
               to={`${url}/contract-informatie`}
               startIcon={<SubjectIcon />}
-              disabled
             >
               Contract informatie
             </Button>

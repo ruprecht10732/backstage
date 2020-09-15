@@ -17,30 +17,27 @@ function MedewerkersSection({
   };
 
   return (
-    <Fragment>
-      <Grid item xs={6}>
-        {icon}
-        <Typography variant="h5">{title}</Typography>
-        <Typography variant="paragraph">{subTitle}</Typography>
-        {aanpasbaar === true ? (
-          <div>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={checked}
-                  onChange={toggleChecked}
-                  color="primary"
-                />
-              }
-              label="Aanpassen"
-            />
-          </div>
-        ) : (
-          " "
-        )}
-      </Grid>
-      <Grid item xs={6}></Grid>
-    </Fragment>
+    <Grid item xs={12}>
+      {icon}
+      <Typography variant="h5">{title}</Typography>
+      <Typography variant="paragraph">{subTitle}</Typography>
+      {aanpasbaar === true ? (
+        <div>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={checked}
+                onChange={toggleChecked}
+                color="primary"
+              />
+            }
+            label="Aanpassen"
+          />
+        </div>
+      ) : (
+        " "
+      )}
+    </Grid>
   );
 }
 

@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
 import MaterialTable from "material-table";
 import Axios from "axios";
-import { Grid, Paper, makeStyles } from "@material-ui/core";
+import { Grid, Paper, makeStyles, Typography, Badge } from "@material-ui/core";
+import CommentIcon from "@material-ui/icons/Comment";
 import moment from "moment";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 moment().format();
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100vw",
     overflowX: "auto",
+  },
+  opmerkingen: {
+    margin: "2% 0 2% 6.7%",
+  },
+  displayNone: {
+    display: "none",
+  },
+  badgeNeutral: {
+    backgroundColor: "grey",
+    color: "white",
   },
 }));
 
@@ -36,64 +48,84 @@ function UrenTabel() {
     data: [
       {
         id: "",
-        Functie: "",
-        Werknemer: "",
-        Achternaam: "",
-        Email: "",
-        Mobiel: "",
-        Straat: "",
-        Huisnummer: "",
-        Toevoeging: "",
-        Postcode: "",
-        Woonplaats: "",
-        NoodContact: "",
-        NoodNummer: "",
-        Vestiging: "",
-        GeboorteDatum: "",
       },
     ],
   });
 
   const [state] = React.useState({
     columns: [
-      { title: "Werknemer", field: "Werknemer" },
-      { title: "Gewerkte uren", field: "GewerkteUren", type: "int" },
       {
-        title: "Uren distributie",
-        field: "UrenDistributie",
+        title: "Werknemer",
+        field: "Medewerker",
+        editable: false,
+        cellStyle: {
+          fontWeight: "bold",
+        },
+      },
+      {
+        title: "Maand",
+        field: "Maand",
+        editable: false,
+        cellStyle: {
+          fontWeight: "bold",
+        },
+      },
+      {
+        title: "Jaar",
+        field: "Jaar",
+        editable: false,
+        cellStyle: {
+          fontWeight: "bold",
+        },
+      },
+      {
+        title: "Uren totaal",
+        field: "UrenTotaal",
+        editable: false,
+      },
+      {
+        title: "Bruto Loon",
+        field: "Loon",
+        editable: false,
+      },
+      {
+        title: "Bonus omschrijving",
+        field: "Bonus",
         editable: false,
         filtering: false,
+      },
+      {
+        title: "Bruto Bonus totaal",
+        field: "BonusTotaal",
+        editable: false,
       },
       {
         title: "Status",
         field: "Status",
         editable: false,
-        filtering: false,
+        cellStyle: {
+          fontWeight: "bold",
+        },
       },
     ],
   });
 
   useEffect(() => {
-    Axios.get("http://localhost:5050/medewerkers")
+    Axios.get("http://localhost:5050/verdiensten/1")
       .then((response) => {
         let data = [];
         response.data.forEach((el) => {
           data.push({
             id: el.medewerker_ID,
-            Functie: el.Rol,
-            Werknemer: el.AchterNaam + ", " + el.Naam,
-            Achternaam: el.AchterNaam,
-            Email: el.Email,
-            Mobiel: el.Mobiel,
-            Straat: el.Straat,
-            Huisnummer: el.Huisnummer,
-            Toevoeging: el.Toevoeging,
-            Postcode: el.Postcode,
-            Woonplaats: el.Woonplaats,
-            NoodContact: el.NoodGevalNaam,
-            NoodNummer: el.NoodGevalNummer,
-            Vestiging: el.vestiging_naam,
-            GeboorteDatum: el.GeboorteDatum,
+            Medewerker: el.Naam,
+            Maand: el.maand,
+            Jaar: el.jaar,
+            UrenTotaal: el.uren_totaal,
+            Loon: "€ " + el.loon_totaal,
+            Bonus: el.bonus_omschrijving,
+            BonusTotaal: "€ " + el.bonus_totaal,
+            Status: el.status,
+            Opmerkingen: el.opmerkingen,
           });
         });
         setEntries({ data: data });
@@ -106,6 +138,44 @@ function UrenTabel() {
   return (
     <Grid item container xs={12}>
       <MaterialTable
+        detailPanel={[
+          (rowData) => ({
+            disabled: !rowData.expandable,
+            icon: () => (
+              <Badge
+                badgeContent={1}
+                color="primary"
+                className={!rowData.Opmerkingen && classes.displayNone}
+                classes={{
+                  badge: classes.badgeNeutral,
+                }}
+              >
+                <CommentIcon
+                  className={!rowData.Opmerkingen && classes.displayNone}
+                />
+              </Badge>
+            ),
+            render: () => {
+              return (
+                <Grid container xs={12}>
+                  <Grid container item xs={12}>
+                    <Grid item className={classes.opmerkingen}>
+                      <Typography variant="subtitle2">Opmerkingen</Typography>
+                      <Typography variant="paragraph">
+                        {!rowData.Opmerkingen
+                          ? "Geen opmerkingen"
+                          : rowData.Opmerkingen}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              );
+            },
+            openIcon: () => <ExpandLessIcon />,
+            tooltip: "Bekijk opmerkingen",
+          }),
+        ]}
+        onRowClick={(event, rowData, togglePanel) => togglePanel()}
         components={{
           Container: (props) => (
             <Paper {...props} elevation={0} className={classes.root} />
@@ -144,7 +214,7 @@ function UrenTabel() {
             },
           },
         }}
-        title="Alle actieve medewerkers"
+        title="Overzicht bruto verdiensten"
         options={{
           filtering: true,
           pageSize: "7",
@@ -167,36 +237,6 @@ function UrenTabel() {
         }}
         columns={state.columns}
         data={entries.data}
-        editable={{
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-                const data = [...entries.data];
-                data[data.indexOf(oldData)] = newData;
-                Axios.put("http://localhost:5050/medewerkers", newData, {
-                  params: {
-                    id: entries.data[0].id,
-                  },
-                }).then((res) => console.log(res.data));
-                setEntries({ ...entries, data });
-              }, 600);
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-                const data = [...entries.data];
-                data.splice(data.indexOf(oldData), 1);
-                Axios.delete("http://localhost:5050/medewerkers", {
-                  params: {
-                    id: entries.data[0].id,
-                  },
-                }).then((res) => console.log(res.data));
-                setEntries({ ...entries, data });
-              }, 600);
-            }),
-        }}
       />
     </Grid>
   );

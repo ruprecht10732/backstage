@@ -34,9 +34,7 @@ function MedewerkersHeader() {
   const classes = useStyles();
   return (
     <Grid
-      item
       container
-      xs={12}
       classes={{
         root: classes.root,
       }}
@@ -59,7 +57,6 @@ function MedewerkersHeader() {
               activeClassName={classes.active}
               to={`${url}/medewerker-aanmaken`}
               startIcon={<AddCircleOutlineIcon />}
-              disabled
             >
               Nieuwe medewerker aanmaken
             </Button>

@@ -183,15 +183,26 @@ function ProfielForm({ isEditable, setChecked }) {
             />
           </Grid>
           <Grid item xs={12}>
-            <MyDatePicker
-              disabled={isEditable ? false : true}
-              variant={isEditable ? "outlined" : "standard"}
-              required={true}
-              label="Geboortedatum"
-              name="geboortedatum"
-              defaultValue={repos.geboortedatum}
-            />
+            {isEditable ? (
+              <MyDatePicker
+                disabled={isEditable ? false : true}
+                variant={isEditable ? "outlined" : "standard"}
+                required={true}
+                label="Geboortedatum"
+                name="geboortedatum"
+              />
+            ) : (
+              <MyTextField
+                className={classes.generalInput}
+                label="Geboortedatum"
+                name="geboortedatum"
+                disabled={isEditable ? false : true}
+                variant={isEditable ? "outlined" : "standard"}
+                required={true}
+              />
+            )}
           </Grid>
+
           <Grid item xs={12}>
             <MyTextField
               className={classes.generalInput}

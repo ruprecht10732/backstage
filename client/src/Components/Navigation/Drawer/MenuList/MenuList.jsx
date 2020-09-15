@@ -26,6 +26,7 @@ const MenuList = ({ name, items }) => {
 
 MenuList.propTypes = {
   name: PropTypes.string,
+  items: PropTypes.array,
 };
 
 export default MenuList;

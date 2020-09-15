@@ -1,13 +1,14 @@
 import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import UrenHeader from "./UrenHeader";
-import UrenOverzicht from "./UrenOverzicht";
+import UrenSubHeader from "./UrenSubHeader";
+import UrenContent from "./UrenContent";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
 }));
 
-function Medewerkers() {
+function UrenBeheren() {
   const classes = useStyles();
   return (
     <Grid
@@ -21,9 +22,10 @@ function Medewerkers() {
       alignItems="center"
     >
       <UrenHeader />
-      <UrenOverzicht />
+      <UrenSubHeader />
+      <UrenContent />
     </Grid>
   );
 }
 
-export default Medewerkers;
+export default UrenBeheren;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Paper, makeStyles, Grid } from "@material-ui/core";
-import UrenTabel from "./UrenTabel";
+import UrenContent from "./UrenContent";
 
 const useStyles = makeStyles((theme) => ({
   profielPaper: {
@@ -26,7 +26,7 @@ function UrenOverzicht() {
         </Grid>
         <Grid item container xs={12}>
           <Grid item xs={12}>
-            <UrenTabel />
+            <UrenContent />
           </Grid>
         </Grid>
       </Grid>

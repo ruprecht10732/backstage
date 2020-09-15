@@ -1,21 +1,19 @@
 import React from "react";
-import Dashboard from "../Dashboard/Dashboard";
 import Profiel from "../Profiel/Profiel";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Medewerkers from "../Medewerkers/Medewerkers";
 import UrenBeheren from "../UrenBeheren/UrenBeheren";
+import Verdiensten from "../Verdiensten/Verdiensten";
+import NotFound from "../NotFound/NotFound";
 
-function Content(props) {
+function Content() {
   return (
     <Switch>
-      <Route exact path="/">
-        <Dashboard />
-      </Route>
-      <Route exact path="/dashboard">
-        <Dashboard />
-      </Route>
       <Route path="/profiel">
         <Profiel />
+      </Route>
+      <Route path="/verdiensten">
+        <Verdiensten />
       </Route>
       <Route path="/beheer/medewerkers">
         <Medewerkers />
@@ -23,6 +21,10 @@ function Content(props) {
       <Route path="/beheer/uren-beheren">
         <UrenBeheren />
       </Route>
+      <Route exact path="/404">
+        <NotFound />
+      </Route>
+      <Redirect to="/404" />
     </Switch>
   );
 }

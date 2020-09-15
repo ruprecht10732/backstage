@@ -1,23 +1,20 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import logo from "./logo.png";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://www.thecallcompany.nl/">
         The Call Company
       </Link>{" "}
       {new Date().getFullYear()}
@@ -35,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    width: "20%",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -53,11 +50,9 @@ export default function Login() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <img src={logo} className={classes.avatar} />
         <Typography component="h1" variant="h5">
-          Login
+          The Call Company
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -66,7 +61,7 @@ export default function Login() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email Adres"
             name="email"
             autoComplete="email"
             autoFocus
@@ -77,7 +72,7 @@ export default function Login() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Wachtwoord"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -93,7 +88,7 @@ export default function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="/wachtwoord-vergeten" variant="body2">
                 Wachtwoord vergeten?
               </Link>
             </Grid>

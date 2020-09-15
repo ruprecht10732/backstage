@@ -1,16 +1,12 @@
 import React from "react";
 import {
   Grid,
+  Avatar,
+  Typography,
   makeStyles,
   List,
   ListItem,
-  ButtonGroup,
-  Button,
-  Typography,
 } from "@material-ui/core";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import { NavLink, useRouteMatch } from "react-router-dom";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,16 +17,9 @@ const useStyles = makeStyles((theme) => ({
   Name: {
     paddingLeft: "0.3vw",
   },
-  active: {
-    background: "#fff",
-    color: "black",
-    "&:hover": {
-      background: "#fff",
-    },
-  },
 }));
 
-function UrenHeader() {
+function ProfielHeader() {
   const classes = useStyles();
   return (
     <Grid
@@ -44,13 +33,14 @@ function UrenHeader() {
       alignItems="center"
     >
       <List>
-        <ListItem>
-          <Typography variant="h5">Uren registratie</Typography>
+        <ListItem alignItems="center">
+          <Typography className={classes.Name} variant="h5">
+            Uren beheren
+          </Typography>
         </ListItem>
-        <ListItem>Augustus</ListItem>
       </List>
     </Grid>
   );
 }
 
-export default UrenHeader;
+export default ProfielHeader;

@@ -6,7 +6,6 @@ import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
 import FaceIcon from "@material-ui/icons/Face";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
-import TimerIcon from "@material-ui/icons/Timer";
 import TodayIcon from "@material-ui/icons/Today";
 import SupervisedUserCircleOutlinedIcon from "@material-ui/icons/SupervisedUserCircleOutlined";
 import CalendarViewDayOutlinedIcon from "@material-ui/icons/CalendarViewDayOutlined";
@@ -119,7 +118,7 @@ const menu = [
     text: "Uren beheren",
     menuType: "Beheer",
     icon: <CalendarViewDayOutlinedIcon />,
-    url: "uren-beheren",
+    url: "/beheer/uren-beheren",
     beta: false,
     public: true,
     new: false,
