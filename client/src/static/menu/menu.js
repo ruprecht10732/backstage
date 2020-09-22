@@ -13,6 +13,7 @@ import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import InsertDriveFileOutlinedIcon from "@material-ui/icons/InsertDriveFileOutlined";
 import UpdateOutlinedIcon from "@material-ui/icons/UpdateOutlined";
 import EuroIcon from "@material-ui/icons/Euro";
+import LocationCityIcon from "@material-ui/icons/LocationCity";
 
 const menu = [
   {
@@ -103,12 +104,12 @@ const menu = [
   {
     id: 8,
     order: 2,
-    text: "Agenda",
+    text: "Vestigingen",
     menuType: "Beheer",
-    icon: <TodayIcon />,
-    url: "/beheer/agenda",
+    icon: <LocationCityIcon />,
+    url: "/beheer/vestigingen",
     beta: false,
-    public: false,
+    public: true,
     new: false,
     visibility: "administrator, manager",
   },

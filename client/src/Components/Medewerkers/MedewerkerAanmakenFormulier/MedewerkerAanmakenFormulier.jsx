@@ -1,107 +1,170 @@
-import React, { useState } from "react";
-import { Grid, Typography, FormHelperText } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Grid, LinearProgress } from "@material-ui/core";
 import { Formik, Form, Field } from "formik";
 import { Button } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
 import MenuItem from "@material-ui/core/MenuItem";
 import * as Yup from "yup";
-import { Select } from "formik-material-ui";
-import axios from "axios";
+import Axios from "axios";
+import SendIcon from "@material-ui/icons/Send";
+
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import MedewerkerDialog from "../MedewerkerDialog";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const validationSchema = Yup.object({
-  naam: Yup.string()
-    .required("Dit is een verplicht veld")
-    .max(75, "Maximaal 25 karakters")
-    .min(2, "Minimaal 2 karakters"),
   email: Yup.string()
     .required("Dit is een verplicht veld")
     .max(75, "Maximaal 75 karakters")
     .min(2, "Minimaal 2 karakters")
     .email("Dit is geen geldig email adres"),
-  vestiging: Yup.string()
-    .required("Dit is een verplicht veld")
-    .min(6, "Dit veld moet minimaal 6 karakters bevatten")
-    .max(7, "Dit veld mag maximaal 7 karakters bevatten"),
+  department: Yup.mixed().required("Dit is een verplicht veld"),
 });
 
 function MedewerkerAanmakenFormulier() {
+  const [data, setData] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [departmentAdded, setDepartmentAdded] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setDepartmentAdded(false);
+    setOpen(false);
+  };
+
+  const handleDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleDepartmentAdded = () => {
+    setDepartmentAdded(true);
+  };
+
   const [initialValues, setInitialValues] = useState({
-    naam: "",
     email: "",
-    vestiging: "Alkmaar",
+    department: "",
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await Axios("http://localhost:5050/api/department");
+      setData(result.data[0]);
+      setInitialValues({ email: "", department: "" });
+      if (result.data[0].length > 0) {
+        setOpenDialog(false);
+      } else {
+        setOpenDialog(true);
+      }
+    };
+
+    fetchData();
+  }, [openDialog]);
+
+  const handleOnSubmit = (values, actions) => {
+    Axios({
+      method: "POST",
+      url: "http://localhost:5050/api/invite",
+      data: values,
+    })
+      .then((response) => {
+        actions.setSubmitting(false);
+        actions.resetForm();
+        setOpen(true);
+      })
+      .catch((error) => {
+        actions.setSubmitting(false);
+        console.log(error);
+      });
+  };
+
   return (
-    <Grid item container xs={12}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(repos, { setSubmitting }) => {
-          setTimeout(() => {
-            axios
-              .put("#", initialValues)
-              .then(function (response) {
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-            setSubmitting(false);
-          }, 600);
-        }}
-      >
-        {({ submitForm, isSubmitting }) => (
-          <Form>
-            <Grid item container spacing={2}>
-              <Grid item xs={12}>
-                <Field
-                  component={TextField}
-                  label="Naam"
-                  name="naam"
-                  required
-                  fullwdith="true"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Field
-                  component={TextField}
-                  label="Email"
-                  name="email"
-                  type="email"
-                  required
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Field
-                  component={Select}
-                  name="vestiging"
-                  inputProps={{ "aria-label": "Vestiging" }}
-                  displayEmpty
-                  autoWidth
-                >
-                  <MenuItem value="">
-                    <em>Kies een vestiging</em>
-                  </MenuItem>
-                  <MenuItem value="Alkmaar">Alkmaar</MenuItem>
-                  <MenuItem value="Leiden">Leiden</MenuItem>
-                  <MenuItem value="Leeuwarden">Leeuwarden</MenuItem>
-                </Field>
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  disabled={isSubmitting}
-                  onClick={submitForm}
-                >
-                  Uitnodiging verzenden
-                </Button>
-              </Grid>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleOnSubmit}
+    >
+      {({ submitForm, isSubmitting }) => (
+        <Form>
+          <Grid container spacing={3}>
+            {openDialog && (
+              <MedewerkerDialog
+                setOpenDialog={handleDialog}
+                handleDepartmentAdded={handleDepartmentAdded}
+              />
+            )}
+            <Grid item xs={12}>
+              {isSubmitting && <LinearProgress color="primary" />}
             </Grid>
-          </Form>
-        )}
-      </Formik>
-    </Grid>
+            <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity="success">
+                Medewerker succesvol uitgenodigd
+              </Alert>
+            </Snackbar>
+            <Snackbar
+              open={departmentAdded}
+              autoHideDuration={4000}
+              onClose={handleClose}
+            >
+              <Alert onClose={handleClose} severity="success">
+                Vestiging succesvol aangemaakt
+              </Alert>
+            </Snackbar>
+            <Grid item xs={12}>
+              <Field
+                component={TextField}
+                autoComplete="email"
+                name="email"
+                type="email"
+                label="Email adres nieuwe medewerker"
+                fullWidth={true}
+                required
+                disabled={data.length === 0 ? true : false}
+                autoFocus={true}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Field
+                component={TextField}
+                label="Selecteer een vestiging"
+                required
+                select={true}
+                disabled={data.length === 0 ? true : false}
+                fullWidth={true}
+                name="department"
+                inputProps={{
+                  id: "department-lijst",
+                }}
+              >
+                {data.map((department) => (
+                  <MenuItem key={department.id} value={department.id}>
+                    {department.naam}
+                  </MenuItem>
+                ))}
+              </Field>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={data.length === 0 ? true : isSubmitting}
+                onClick={submitForm}
+                endIcon={<SendIcon />}
+              >
+                uitnodiging verzenden
+              </Button>
+            </Grid>
+          </Grid>
+        </Form>
+      )}
+    </Formik>
   );
 }
 

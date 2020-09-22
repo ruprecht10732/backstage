@@ -2,6 +2,7 @@ import React from "react";
 import Profiel from "../Profiel/Profiel";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Medewerkers from "../Medewerkers/Medewerkers";
+import Vestigingen from "../Vestigingen/Vestigingen";
 import UrenBeheren from "../UrenBeheren/UrenBeheren";
 import Verdiensten from "../Verdiensten/Verdiensten";
 import NotFound from "../NotFound/NotFound";
@@ -17,6 +18,9 @@ function Content() {
       </Route>
       <Route path="/beheer/medewerkers">
         <Medewerkers />
+      </Route>
+      <Route path="/beheer/vestigingen">
+        <Vestigingen />
       </Route>
       <Route path="/beheer/uren-beheren">
         <UrenBeheren />

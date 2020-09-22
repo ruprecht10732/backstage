@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MedewerkersHeader() {
+function VestigingenHeader() {
   let { url } = useRouteMatch();
   const classes = useStyles();
   return (
@@ -50,15 +50,15 @@ function MedewerkersHeader() {
               to={`${url}`}
               startIcon={<PersonOutlineIcon />}
             >
-              Medewerkers
+              Vestigingen
             </Button>
             <Button
               component={NavLink}
               activeClassName={classes.active}
-              to={`${url}/medewerker-aanmaken`}
+              to={`${url}/vestiging-aanmaken`}
               startIcon={<AddCircleOutlineIcon />}
             >
-              Nieuwe medewerker aanmaken
+              Nieuwe vestiging aanmaken
             </Button>
           </ButtonGroup>
         </ListItem>
@@ -67,4 +67,4 @@ function MedewerkersHeader() {
   );
 }
 
-export default MedewerkersHeader;
+export default VestigingenHeader;
