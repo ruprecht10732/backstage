@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 const validationSchema = Yup.object({
   straat: Yup.string()
-    .required("Dit is een verplicht veld")
+    .required("Het adres veld is een verplicht veld")
     .max(75, "Maximaal 25 karakters")
     .min(2, "Minimaal 2 karakters"),
   huisNummer: Yup.string()
@@ -48,7 +48,7 @@ const validationSchema = Yup.object({
     "Dit veld moet minimaal 1 teken bevatten"
   ),
   woonPlaats: Yup.string()
-    .required("Dit is een verplicht veld")
+    .required("Dit is ook een verplicht veld")
     .max(75, "Maximaal 75 karakters")
     .min(2, "Minimaal 2 karakters"),
 });
